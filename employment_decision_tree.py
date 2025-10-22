@@ -1,5 +1,3 @@
-# Decision Tree Classification on Employment Dataset
-# Required libraries: pandas, numpy, sklearn, matplotlib, seaborn
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -13,14 +11,13 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn import tree
 
-# ----------------------------
+
 # 1) Data Loading & Exploration
-# ----------------------------
 print("=== DATA ANALYTICS ASSIGNMENT 1 ===")
 print("=== Decision Tree Classification for Employment Suitability ===\n")
 
 # Load the dataset
-df = pd.read_csv("WA_Fn-UseC_-HR-Employee-Attrition.csv")  # Using the IBM HR dataset as specified
+df = pd.read_csv("WA_Fn-UseC_-HR-Employee-Attrition.csv") 
 
 print("Dataset shape:", df.shape)
 print("\nFirst 5 rows of the dataset:")
@@ -36,17 +33,8 @@ print(df.isnull().sum())
 print("\n--- Summary Statistics ---")
 print(df.describe())
 
-# Since the actual dataset doesn't match the assignment description exactly,
-# Let's map the available columns to our assignment requirements
 print("\nAvailable columns in the dataset:")
 print(df.columns.tolist())
-
-# For this assignment, we'll use appropriate columns from the IBM dataset
-# Mapping: 
-# - 'Attrition' will be our target variable (suitable_for_employment)
-# - We'll select relevant features that match the assignment description
-
-# Create a modified dataset for our assignment
 assignment_df = df[['Age', 'Education', 'TotalWorkingYears', 'PerformanceRating', 
                    'JobSatisfaction', 'YearsAtCompany', 'Attrition']].copy()
 
@@ -204,9 +192,7 @@ clf.fit(X_train, y_train)
 print("Decision Tree classifier trained successfully!")
 print(f"Training Accuracy: {clf.score(X_train, y_train):.4f}")
 
-# ----------------------------
 # 4) Model Visualization
-# ----------------------------
 print("\n=== MODEL VISUALIZATION ===")
 
 plt.figure(figsize=(20, 12))
@@ -227,9 +213,8 @@ plt.savefig("employment_decision_tree.png", dpi=300, bbox_inches='tight')
 print("Decision tree visualization saved as 'employment_decision_tree.png'")
 plt.show()
 
-# ----------------------------
 # 5) Model Testing and Prediction
-# ----------------------------
+
 print("\n=== MODEL TESTING AND PREDICTION ===")
 
 # Predict on test set
@@ -291,10 +276,7 @@ for i, (idx, candidate) in enumerate(hypothetical_candidates.iterrows()):
     print(f"  Prediction: {prediction}")
     print(f"  Confidence: {probability:.2%}")
     print(f"  Detailed Probabilities: Yes: {hyp_probabilities[i][1]:.2%}, No: {hyp_probabilities[i][0]:.2%}")
-
-# ----------------------------
 # 6) Model Evaluation
-# ----------------------------
 print("\n=== MODEL EVALUATION ===")
 
 # Calculate evaluation metrics
@@ -317,10 +299,7 @@ plt.show()
 
 print("\nClassification Report:")
 print(class_report)
-
-# ----------------------------
 # Bonus: Feature Importance Analysis
-# ----------------------------
 print("\n=== FEATURE IMPORTANCE ANALYSIS ===")
 
 feature_importances = pd.DataFrame({
@@ -339,14 +318,13 @@ plt.xlabel('Importance Score')
 plt.tight_layout()
 plt.show()
 
-# ----------------------------
-# Assignment Summary and Interpretation
-# ----------------------------
+# Summary and Interpretation
+
 print("\n" + "="*70)
 print("ASSIGNMENT SUMMARY AND INTERPRETATION")
 print("="*70)
 
-print("\n📊 KEY FINDINGS:")
+print("\n KEY FINDINGS:")
 print(f"• Model Accuracy: {accuracy:.2%}")
 print(f"• Most Important Feature: {feature_importances.iloc[0]['feature']} "
       f"({feature_importances.iloc[0]['importance']:.2%})")
