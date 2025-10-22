@@ -221,11 +221,11 @@ plot_tree(
 )
 plt.title("Decision Tree for Employment Suitability Prediction", fontsize=16)
 plt.tight_layout()
-plt.show()
 
 # Save the visualization
 plt.savefig("employment_decision_tree.png", dpi=300, bbox_inches='tight')
 print("Decision tree visualization saved as 'employment_decision_tree.png'")
+plt.show()
 
 # ----------------------------
 # 5) Model Testing and Prediction
